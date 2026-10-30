@@ -1,97 +1,80 @@
-"""Generate the profile's self-contained SVG artwork. Python standard library only."""
+"""Generate profile artwork using the portfolio palette and local feather mark.
+
+Run: python3 scripts/generate-art.py (Python standard library only).
+"""
 
 from pathlib import Path
-from math import cos, sin, pi
-from random import Random
 
 ASSETS = Path(__file__).resolve().parents[1] / "assets"
 ASSETS.mkdir(exist_ok=True)
-
-def point(cx, cy, radius, angle):
-    return f"{cx + radius * cos(angle):.2f},{cy + radius * sin(angle):.2f}"
-
-def polygon(cx, cy, radius, sides, offset=-pi / 2):
-    return " ".join(point(cx, cy, radius, offset + i * 2 * pi / sides) for i in range(sides))
-
-rng = Random(1509)
-stars = "".join(
-    f'<circle cx="{rng.randrange(24, 1176)}" cy="{rng.randrange(20, 355)}" r="{rng.choice([.6, .8, 1, 1.3])}" fill="{rng.choice(["#b7a8ec", "#7cded8", "#ffffff"])}" opacity="{rng.uniform(.15, .6):.2f}"/>'
-    for _ in range(95)
-)
-ticks = "".join(
-    f'<path d="M{point(930, 208, 137, i*pi/24)} L{point(930, 208, 145 if i % 4 == 0 else 141, i*pi/24)}"/>'
-    for i in range(48)
-)
-glyphs = "".join(
-    f'<g transform="translate({point(930, 208, 118, a)}) rotate({a*180/pi+90})"><path d="M-4 4V-5L4 0L-4 1M0 -7V7"/></g>'
-    for a in [i * pi / 4 for i in range(8)]
+feather = (ASSETS / "peacock-feather.svg").read_text().replace(
+    '<svg xmlns=', '<svg x="890" y="108" width="130" height="130" xmlns=', 1
 )
 
-hero = f'''<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="440" viewBox="0 0 1200 440" fill="none" role="img" aria-labelledby="title desc">
-<title id="title">Mohan Krishna — The Arcane Engineer</title>
-<desc id="desc">A midnight violet landscape, circuit traces and a luminous magical sigil. AI agents, voice systems and software.</desc>
-<defs>
- <linearGradient id="bg" x2="1200" y2="440" gradientUnits="userSpaceOnUse"><stop stop-color="#11101f"/><stop offset=".6" stop-color="#17132d"/><stop offset="1" stop-color="#0a1926"/></linearGradient>
- <radialGradient id="halo"><stop stop-color="#7961d0" stop-opacity=".25"/><stop offset="1" stop-color="#7961d0" stop-opacity="0"/></radialGradient>
- <linearGradient id="ink" x2="1" y2="1"><stop stop-color="#bda5ff"/><stop offset="1" stop-color="#63e8dd"/></linearGradient>
- <linearGradient id="mountain" x2="0" y2="1"><stop stop-color="#31264c"/><stop offset="1" stop-color="#10131f"/></linearGradient>
- <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" stroke="#9e8cca" stroke-opacity=".045"/></pattern>
-</defs>
-<rect x=".5" y=".5" width="1199" height="439" rx="16" fill="url(#bg)" stroke="#3a3154"/>
-<rect x="1" y="1" width="1198" height="438" rx="16" fill="url(#grid)"/>
-<ellipse cx="930" cy="208" rx="270" ry="240" fill="url(#halo)"/>
-{stars}
-<g stroke="#8b73b8" stroke-opacity=".22" stroke-width="1">
- <path d="M704 1V58L750 104H796M1200 77H1118L1081 114M1200 309H1122L1095 282H1058M745 1V26L776 57H812M1200 348H1136L1112 324"/>
- <path d="M0 331H82L106 307H151M0 346H62L86 322H128"/>
+header = f'''<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="360" viewBox="0 0 1100 360" fill="none" role="img" aria-labelledby="title desc">
+<title id="title">Mohan Krishna — Software &amp; AI Engineer</title>
+<desc id="desc">A charcoal portfolio header with a peach accent, restrained typography, and a teal and gold peacock feather.</desc>
+<rect x=".5" y=".5" width="1099" height="359" rx="8" fill="#101113" stroke="#2a2d33"/>
+<path d="M0 60H1100M0 282H1100M550 282V360" stroke="#2a2d33"/>
+<g font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace">
+ <text x="38" y="36" fill="#a0a4ad" font-size="11" letter-spacing="1">AI AGENTS / VOICE SYSTEMS / FULL-STACK</text>
+ <circle cx="864" cy="32" r="3" fill="#91b89d"/>
+ <text x="877" y="36" fill="#b4c7b8" font-size="11">OPEN TO OPPORTUNITIES</text>
 </g>
-<g fill="#a38bc6"><circle cx="796" cy="104" r="2.5"/><circle cx="812" cy="57" r="2"/><circle cx="1058" cy="282" r="2.5"/><circle cx="151" cy="307" r="2"/></g>
-<g stroke="url(#ink)" stroke-width="1" opacity=".7">
- <circle cx="930" cy="208" r="145" stroke-opacity=".4"/>
- <circle cx="930" cy="208" r="131"/>
- <circle cx="930" cy="208" r="104" stroke-opacity=".55"/>
- {ticks}
- <polygon points="{polygon(930,208,99,3)}"/>
- <polygon points="{polygon(930,208,99,3,pi/2)}" stroke-opacity=".6"/>
- {glyphs}
+<g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+ <text x="35" y="164" fill="#ededee" font-size="76" font-weight="600" letter-spacing="-3.5">Mohan Krishna<tspan fill="#ffab76">.</tspan></text>
+ <text x="38" y="213" fill="#a0a4ad" font-size="29" letter-spacing="-.6">Software &amp; AI engineer.</text>
 </g>
-<g transform="translate(930 208)">
- <path d="M0 -60 39 0 0 60 -39 0Z" fill="#191c36" stroke="#a995ee" stroke-width="1.5"/>
- <path d="M0 -60V60M-39 0H39" stroke="#a995ee" stroke-opacity=".35"/>
- <path d="m-11 -16-15 16 15 16m22-32 15 16-15 16M5 -24-5 24" stroke="#83f0e3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
- <circle cy="-60" r="3" fill="#e4cb8f"/><circle cy="60" r="3" fill="#e4cb8f"/>
+<rect x="866" y="95" width="177" height="156" rx="6" fill="#15171a" stroke="#2a2d33"/>
+{feather}
+<g font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace" font-size="10" letter-spacing=".6" fill="#858b96">
+ <text x="38" y="309">EDUCATION</text><text x="582" y="309">CORE STACK</text>
 </g>
-<path d="m696 406 51-58 33 24 63-64 31 23 63-58 54 75 32-29 69 55 38-28 70 64v30H696Z" fill="url(#mountain)" stroke="#655384" stroke-opacity=".35"/>
-<path d="m737 440 77-58 49 25 49-56 43 33 52-29 73 55 56-32 64 46v16Z" fill="#10141f"/>
-<path d="m912 351 10 24 16 10-26-34m-69-43 6 25 15 9-21-34m94-35 7 32 18 6" stroke="#a58bd2" stroke-opacity=".3"/>
-<g font-family="ui-monospace, 'SFMono-Regular', Consolas, monospace">
- <path d="M52 52h20" stroke="#dfbf81" stroke-width="2"/>
- <text x="85" y="57" fill="#dfbf81" font-size="12" letter-spacing="3.2">THE ARCANE ENGINEER</text>
- <text x="52" y="106" fill="#a99dbd" font-size="13" letter-spacing="2">&lt; kirmada1509 /&gt;</text>
+<g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#c4c7cd">
+ <text x="38" y="336">BITS Pilani · Mathematics &amp; Computing</text>
+ <text x="582" y="336">Python / TypeScript / LiveKit</text>
 </g>
-<g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-weight="700" font-size="72" letter-spacing="-2.5" fill="#f2edf9">
- <text x="47" y="193">Mohan</text><text x="47" y="267">Krishna<tspan fill="#80e6da">.</tspan></text>
-</g>
-<path d="M52 297H107" stroke="#8d76bd"/>
-<text x="52" y="332" font-family="ui-monospace, 'SFMono-Regular', Consolas, monospace" font-size="13" letter-spacing="1.2" fill="#a8a0be">AI AGENTS <tspan fill="#5ee0d2">/</tspan> VOICE SYSTEMS <tspan fill="#5ee0d2">/</tspan> SOFTWARE</text>
-<g font-family="ui-monospace, 'SFMono-Regular', Consolas, monospace" font-size="10" letter-spacing="1.6">
- <circle cx="56" cy="392" r="3" fill="#81e5c1"/>
- <text x="71" y="396" fill="#bbb0ce">SYSTEM ONLINE</text>
- <text x="297" y="396" fill="#81778f">LOGIC × IMAGINATION</text>
-</g>
-<path d="M21 38V21h17M1162 21h17v17M21 402v17h17M1162 419h17v-17" stroke="#9d88be" stroke-opacity=".45"/>
 </svg>'''
-(ASSETS / "arcane-engineer.svg").write_text(hero)
+(ASSETS / "profile-header.svg").write_text(header)
 
-footer = '''<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="146" viewBox="0 0 1200 146" fill="none" role="img" aria-labelledby="title desc">
-<title id="title">The next quest</title><desc id="desc">Build something worth shipping. Let's make it real.</desc>
-<defs><linearGradient id="bg" x2="1200" y2="146" gradientUnits="userSpaceOnUse"><stop stop-color="#14101f"/><stop offset="1" stop-color="#0e1b26"/></linearGradient></defs>
-<rect x=".5" y=".5" width="1199" height="145" rx="12" fill="url(#bg)" stroke="#393249"/>
-<g stroke="#82709f" stroke-opacity=".4"><path d="M0 73h153l20-20h78M1200 73h-153l-20 20h-78"/><path d="M0 89h132l20-20h53M1200 57h-132l-20 20h-53"/></g>
-<g stroke="#97dcd4" stroke-width="1.2"><path d="m278 65 8 8-8 8-8-8Zm644 0 8 8-8 8-8-8Z"/><path d="M286 73h35m558 0h35" stroke-opacity=".4"/></g>
-<text x="600" y="36" text-anchor="middle" font-family="ui-monospace, 'SFMono-Regular', Consolas, monospace" font-size="10" letter-spacing="3" fill="#d6b980">THE NEXT QUEST</text>
-<text x="600" y="80" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="28" font-weight="600" fill="#ece6f7">Build something worth shipping.</text>
-<text x="600" y="113" text-anchor="middle" font-family="ui-monospace, 'SFMono-Regular', Consolas, monospace" font-size="12" fill="#97b9bd">Let's make it real.</text>
+architecture = '''<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="266" viewBox="0 0 1100 266" fill="none" role="img" aria-labelledby="title desc">
+<title id="title">IntervieHire — voice infrastructure</title>
+<desc id="desc">The candidate connects to LiveKit Agents over WebRTC. Deepgram handles speech to text, Fastify orchestrates server-authorized turns, and Cartesia streams speech. Interview state persists in PostgreSQL.</desc>
+<defs><pattern id="dots" width="16" height="16" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".6" fill="#647288" opacity=".22"/></pattern></defs>
+<rect x=".5" y=".5" width="1099" height="265" rx="8" fill="#15191e" stroke="#30333a"/>
+<rect x="1" y="42" width="1098" height="180" fill="url(#dots)"/>
+<path d="M0 42H1100M0 222H1100" stroke="#2a313a"/>
+<g font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace" font-size="10" letter-spacing=".8">
+ <rect x="24" y="18" width="6" height="6" rx="1" stroke="#8aa9d7"/>
+ <text x="39" y="26" fill="#becad9">INTERVIEHIRE</text>
+ <text x="878" y="26" fill="#929daa">VOICE INFRASTRUCTURE</text>
+</g>
+<g stroke="#9baabd" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+ <rect x="51" y="94" width="40" height="30" rx="3"/><path d="M71 124v9m-12 0h24"/>
+</g>
+<g font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace" fill="#aeb9c8" text-anchor="middle">
+ <text x="71" y="157" font-size="12">Candidate</text><text x="167" y="111" font-size="9">WebRTC</text>
+</g>
+<path d="M112 128H226m-5-4 5 4-5 4" stroke="#6987ac" stroke-width="1.5"/>
+<rect x="228" y="65" width="827" height="136" rx="5" fill="#171e27" stroke="#3d4a5b"/>
+<path d="M228 105H1055M228 172H1055" stroke="#344252"/>
+<g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+ <text x="251" y="91" fill="#9fc0ff" font-size="17">◇</text>
+ <text x="277" y="91" fill="#d2dced" font-size="14" font-weight="500">LiveKit Agents</text>
+</g>
+<text x="918" y="90" fill="#91a7c4" font-size="9" font-family="ui-monospace, monospace" letter-spacing="1">VOICE RUNTIME</text>
+<g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" fill="#e1e8f4">
+ <text x="254" y="135">Deepgram</text><text x="543" y="135">Fastify</text><text x="827" y="135">Cartesia</text>
+</g>
+<g font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace" font-size="10" fill="#92a2ba">
+ <text x="254" y="155">Speech → text</text><text x="543" y="155">Turn orchestration</text><text x="827" y="155">Text → speech</text>
+ <text x="254" y="191">Server-authorized interview state</text><text x="816" y="191">PostgreSQL persistence</text>
+</g>
+<path d="M429 135h49m-5-4 5 4-5 4M714 135h49m-5-4 5 4-5 4" stroke="#6987ac" stroke-width="1.5"/>
+<g font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace" font-size="10">
+ <text x="24" y="249" fill="#93a5bd">Bidirectional audio · WebSockets · Idempotent turns</text>
+ <text x="883" y="249" fill="#c3d3ea">SELF-HOSTED PIPELINE</text>
+</g>
 </svg>'''
-(ASSETS / "questline.svg").write_text(footer)
-print("Generated assets/arcane-engineer.svg and assets/questline.svg")
+(ASSETS / "voice-architecture.svg").write_text(architecture)
+print("Generated profile-header.svg and voice-architecture.svg")

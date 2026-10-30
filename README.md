@@ -1,125 +1,122 @@
-<p align="center">
-  <img src="./assets/arcane-engineer.svg" width="100%" alt="Mohan Krishna — The Arcane Engineer. A luminous circuit sigil above a midnight mountain landscape. Software and AI engineering." />
-</p>
+<a href="https://kirmada1509.github.io/">
+  <img src="./assets/profile-header.svg" width="100%" alt="Mohan Krishna. Software & AI engineer. BITS Pilani — Mathematics & Computing. AI agents, voice systems, and full-stack engineering." />
+</a>
 
-<p align="center">
-  <b>Software & AI Engineer · BITS Pilani · Mathematics & Computing</b><br />
-  <sub>Code is the craft. Curiosity is the magic.</sub>
-</p>
+I build **AI agents, real-time voice systems, and the backend infrastructure around them**. My work includes self-hosted interview pipelines, evidence-linked browser agents, and production web and mobile applications.
 
-<p align="center">
-  <a href="https://kirmada1509.github.io/"><b>Enter the portfolio ↗</b></a>
-  &nbsp; · &nbsp;
-  <a href="https://www.linkedin.com/in/mohan-krishna-karthik/">LinkedIn</a>
-  &nbsp; · &nbsp;
-  <a href="mailto:f20240732@pilani.bits-pilani.ac.in">Send a raven</a>
-  &nbsp; · &nbsp;
-  <a href="https://kirmada1509.github.io/resume.html">Résumé</a>
-</p>
+**BITS Pilani** · B.E. Mathematics & Computing · Graduating 2028<br />
+Open to software and AI engineering roles and internships.
+
+[Portfolio ↗](https://kirmada1509.github.io/) &nbsp; · &nbsp; [LinkedIn ↗](https://www.linkedin.com/in/mohan-krishna-karthik/) &nbsp; · &nbsp; [Résumé ↗](https://kirmada1509.github.io/resume.html) &nbsp; · &nbsp; [Get in touch ↗](mailto:f20240732@pilani.bits-pilani.ac.in)
 
 <br />
 
-### ⟡ &nbsp; 01 / The character sheet
+### `01` &nbsp; Selected projects
 
-I'm **Mohan Krishna**, building AI agents, real-time voice systems, and the infrastructure that makes them useful. I like systems that remember context, explain their decisions, and hold up beyond the demo.
+#### [IntervieHire ↗](https://github.com/kirmada1509/interviehire)
 
-```typescript
-const character = {
-  handle: "kirmada1509",
-  class: "Software & AI Engineer",
-  guild: "BITS Pilani",
-  craft: [
-    "AI agents",
-    "Voice infrastructure",
-    "Full-stack systems",
-  ],
-  quest: "Build useful things",
-};
-```
+<sub>VOICE INFRASTRUCTURE · AI INTERVIEWS · MVP</sub>
 
-Engineering Lead at the **Students' Union Technical Team, BITS Pilani**. Open to **software and AI engineering roles and internships**.
+An AI interview platform with recruiter-authored rubrics, a self-hosted LiveKit voice pipeline, and structured evaluation reports. Built bidirectional session orchestration with server-authoritative timing and idempotent interview turns.
 
-<br />
+<a href="https://kirmada1509.github.io/work/interviehire.html">
+  <img src="./assets/voice-architecture.svg" width="100%" alt="IntervieHire architecture: a candidate connects over WebRTC to LiveKit Agents. Deepgram transcribes speech, Fastify orchestrates interview turns, and Cartesia streams speech back. Fastify controls interview state, with PostgreSQL persistence." />
+</a>
 
-### ⟡ &nbsp; 02 / The spellbook
+`LiveKit Agents` `Fastify` `WebSockets` `PostgreSQL`<br />
+[Engineering notes ↗](https://kirmada1509.github.io/work/interviehire.html)
 
 <table>
 <tr>
 <td width="50%" valign="top">
 
-#### ◈ [ReEntry](https://github.com/kirmada1509/reentry)
-**The memory spell**
+<sub>AI AGENTS · TECHNICAL PREVIEW</sub>
 
-A browser task agent for returning to interrupted work: evidence-linked recovery, checkpoint history, and user correction.
+#### [ReEntry ↗](https://github.com/kirmada1509/reentry)
 
-<sub>TypeScript · Browser extension · Ollama / NVIDIA</sub><br />
-<sub>Technical preview</sub>
+A browser agent that recovers interrupted work, with evidence-linked progress, checkpoint history, correction, and restore.
+
+`TypeScript` `Ollama / NVIDIA`
+
+[Engineering notes ↗](https://kirmada1509.github.io/work/reentry.html)
 
 </td>
 <td width="50%" valign="top">
 
-#### ◇ [Precedent](https://github.com/kirmada1509/precedent)
-**The guardian ward**
+<sub>AGENT RELIABILITY · PROTOTYPE</sub>
 
-Checks agent tool calls against past approved and blocked actions, with evidence, human review, and live feedback.
+#### [Precedent ↗](https://github.com/kirmada1509/precedent)
 
-<sub>Python · Moss · Hybrid retrieval</sub><br />
-<sub>Prototype · Synthetic held-out evaluation</sub>
+Checks proposed agent actions against past decisions using retrieval and provenance, with human review and live feedback write-back.
+
+`Python` `Moss` `Hybrid retrieval`
+
+[Engineering notes ↗](https://kirmada1509.github.io/work/precedent.html)
 
 </td>
 </tr>
 <tr>
 <td width="50%" valign="top">
 
-#### ♧ [IntervieHire](https://github.com/kirmada1509/interviehire)
-**The voice familiar**
+<sub>LOCAL-FIRST · CAMPUS SOFTWARE</sub>
 
-An AI interview platform with recruiter-authored rubrics, a self-hosted voice pipeline, and structured evaluation reports.
+#### [OneTap Vendor ↗](https://kirmada1509.github.io/work/onetap.html)
 
-<sub>LiveKit Agents · Fastify · PostgreSQL · Next.js</sub><br />
-<sub>MVP</sub>
+Offline-first campus billing serving **5,000+ students**, with retry/backoff synchronization, UPI QR payments, and automatic backups.
+
+`Go` `Fyne` `SQLite` `sqlc`
+
+[Engineering notes ↗](https://kirmada1509.github.io/work/onetap.html)
 
 </td>
 <td width="50%" valign="top">
 
-#### ⌘ [Blackbox](https://github.com/kirmada1509/blackbox)
-**The operation ledger**
+<sub>MOBILE · PRODUCTION RELEASES</sub>
 
-Cross-session history for BossConsole's MCP operations, with arguments, filtering, and Markdown export.
+#### [BOSM ↗](https://kirmada1509.github.io/work/bosm.html)
 
-<sub>Kotlin · MCP · Developer tooling</sub><br />
-<sub>Hackathon submission</sub>
+Schedules, leaderboards, verification, and food ordering for **6,000+ participants**. Shipped to iOS and Android through Expo EAS.
+
+`React Native` `Expo` `TypeScript`
+
+[Engineering notes ↗](https://kirmada1509.github.io/work/bosm.html)
 
 </td>
 </tr>
 </table>
 
-<p align="right"><a href="https://kirmada1509.github.io/#work">More work & engineering notes ↗</a></p>
+<sub>Precedent's evaluation uses synthetic held-out data. Project notes document the scope and limits of the prototypes.</sub>
 
-### ⟡ &nbsp; 03 / The arsenal
+<br />
 
-| Discipline | Tools of the trade |
+### `02` &nbsp; Experience
+
+**Engineering Lead · Students' Union Technical Team, BITS Pilani**<br />
+<sub>May 2026 — Present</sub>
+
+Lead 20 engineers across frontend, backend, mobile, and UI/UX to deliver campus products, with sprint planning, code reviews, and engineering standards.
+
+**Software Engineering Intern · OBS Experiences**<br />
+<sub>May — July 2026</sub>
+
+Built a modular NestJS backend spanning 12+ business domains and shipped two production Next.js applications. Automated deployment across four repositories with GitLab CI/CD, Docker, and Nginx.
+
+<br />
+
+### `03` &nbsp; Tools & technologies
+
+| Area | Stack |
 | :--- | :--- |
 | **Languages** | Python · TypeScript / JavaScript · Go · C++ · SQL |
-| **AI & voice** | LiveKit Agents · Deepgram · Cartesia · Ollama · Moss |
+| **AI & real-time** | LiveKit Agents · Deepgram · Cartesia · Silero VAD · Ollama · NVIDIA inference · Moss |
 | **Applications** | React · Next.js · React Native · NestJS · Fastify · FastAPI |
 | **Data & infrastructure** | PostgreSQL · Redis · SQLite · Docker · GitLab CI/CD · Nginx |
 
-<details>
-<summary><b>Open the field journal — engineering beyond the prototypes</b></summary>
 <br />
 
-- **[OneTap Vendor](https://kirmada1509.github.io/work/onetap.html):** offline-first campus billing serving 5,000+ students, built with Go, Fyne, and SQLite.
-- **[BOSM](https://kirmada1509.github.io/work/bosm.html):** a sports festival app for 6,000+ participants, with iOS and Android releases using React Native and Expo.
-- **OBS Experiences:** built a modular NestJS backend across 12+ business domains and shipped two production Next.js applications during my software engineering internship.
+### `04` &nbsp; Contact
 
-</details>
+For software and AI engineering opportunities, or to talk about something you're building:<br />
+[f20240732@pilani.bits-pilani.ac.in ↗](mailto:f20240732@pilani.bits-pilani.ac.in)
 
-<br />
-
-<p align="center">
-  <img src="./assets/questline.svg" width="100%" alt="The next quest: build something worth shipping. Let's make it real." />
-</p>
-<p align="center">
-  <a href="mailto:f20240732@pilani.bits-pilani.ac.in"><b>Start a conversation ↗</b></a>
-</p>
+<sub>[kirmada1509.github.io ↗](https://kirmada1509.github.io/) · Pilani, India</sub>
