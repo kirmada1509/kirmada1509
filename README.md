@@ -11,7 +11,7 @@ Open to software and AI engineering roles and internships.
 
 <br />
 
-### `01` &nbsp; Selected projects
+### Things I've built
 
 #### [IntervieHire ↗](https://github.com/kirmada1509/interviehire)
 
