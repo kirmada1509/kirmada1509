@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="146" viewBox="0 0 1200 146" fill="none" role="img" aria-labelledby="title desc">
+<title id="title">The next quest</title><desc id="desc">Build something worth shipping. Let's make it real.</desc>
+<defs><linearGradient id="bg" x2="1200" y2="146" gradientUnits="userSpaceOnUse"><stop stop-color="#14101f"/><stop offset="1" stop-color="#0e1b26"/></linearGradient></defs>
+<rect x=".5" y=".5" width="1199" height="145" rx="12" fill="url(#bg)" stroke="#393249"/>
+<g stroke="#82709f" stroke-opacity=".4"><path d="M0 73h153l20-20h78M1200 73h-153l-20 20h-78"/><path d="M0 89h132l20-20h53M1200 57h-132l-20 20h-53"/></g>
+<g stroke="#97dcd4" stroke-width="1.2"><path d="m278 65 8 8-8 8-8-8Zm644 0 8 8-8 8-8-8Z"/><path d="M286 73h35m558 0h35" stroke-opacity=".4"/></g>
+<text x="600" y="36" text-anchor="middle" font-family="ui-monospace, 'SFMono-Regular', Consolas, monospace" font-size="10" letter-spacing="3" fill="#d6b980">THE NEXT QUEST</text>
+<text x="600" y="80" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="28" font-weight="600" fill="#ece6f7">Build something worth shipping.</text>
+<text x="600" y="113" text-anchor="middle" font-family="ui-monospace, 'SFMono-Regular', Consolas, monospace" font-size="12" fill="#97b9bd">Let's make it real.</text>
+</svg>
